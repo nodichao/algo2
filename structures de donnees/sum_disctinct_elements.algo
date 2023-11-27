@@ -1,0 +1,60 @@
+ALGORITHM sum_distinct_elements
+VAR
+    //declaration de variables
+    tab1 : ARRAY_OF  FLOAT[50];
+    tab2 : ARRAY_OF FLOAT[50];
+    i,j,m,n : INTEGER;
+    sum : FLOAT := 0;
+    test : BOOLEAN := false;
+BEGIN
+    //l'utilisateur saisit les valeurs pour chaque tableau
+    Write("Entrez le nombre d'elements que vous voulez mettre pour l'ensemble A");
+    Read(m);
+    
+    FOR i FROM 0 TO m-1 STEP 1  DO
+        Write("Donnez la valeur de l'element ",i+1);
+        Read(tab1[i]);
+    END_FOR
+
+    Write("Entrez le nombre d'elements que vous voulez mettre pour le tableau B");
+    Read(n);
+    
+    FOR j FROM 0 TO n-1 STEP 1  DO
+        Write("Donnez la valeur de l'element ",i+1);
+        Read(tab2[j]);
+    END_FOR
+    
+    
+    //L'algorithme fait la somme des elements presents dans l'ensemble A et non dans l'ensemble B
+    FOR i FROM 0 TO m-1 STEP 1  DO
+        FOR j FROM 0 TO n-1 STEP 1  DO
+            IF (tab1[i] = tab2[j]) THEN
+                test := true;
+                BREAK;
+            ELSE
+                test := false;    
+            END_IF
+        END_FOR
+        IF (test = false) THEN
+            sum := sum + tab1[i];
+        END_IF
+    END_FOR
+
+    //L'algorithme fait la somme des elements presents dans l'ensemble B et non dans l'ensemble A
+    FOR j FROM 0 TO n-1 STEP 1  DO
+        FOR i FROM 0 TO m-1 STEP 1  DO
+            IF (tab2[j] = tab1[i]) THEN
+                test := true;
+                BREAK;
+            ELSE
+                test := false;    
+            END_IF
+        END_FOR
+        IF (test = false) THEN
+            sum := sum + tab2[j];
+        END_IF
+    END_FOR
+
+    //Affichage de la somme
+    Write("La somme des elements distincts des deux ensembles est :",sum);
+END

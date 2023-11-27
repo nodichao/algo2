@@ -1,0 +1,51 @@
+
+//Procedure qui calcule le produit scalaire entre deux vecteurs
+PROCEDURE dot_product(V1 : ARRAY_OF FLOAT, V2 : ARRAY_OF FLOAT,dim : INTEGER)
+VAR
+    ps : FLOAT :=0;
+    i : INTEGER;
+BEGIN
+    FOR i FROM 0 TO dim-1 STEP 1  DO
+        FOR i FROM 0 TO dim-1 STEP 1  DO
+            ps := ps + (V1[i]*V2[i]);
+        END_FOR
+    END_FOR
+    IF (ps = 0) THEN
+        Write("Les deux vecteurs sont orthogonaux, par consequent leur produit scalaire est egal a ",ps,".");
+    ELSE
+        Write("Les deux vecteurs ne sont pas orthogonaux,leur produit scalaire est egal a ",ps,".");
+    END_IF
+END
+
+//Algorithme qui calcule le produit scalaire entre deux vecteurs
+ALGORITHM Produit_scalaire
+VAR
+    V1 : ARRAY_OF FLOAT[50];
+    V2 : ARRAY_OF FLOAT[50];
+    n,i : INTEGER;
+BEGIN
+    //L'utilisateur saisit la dimension sur laquelle il veut travailler
+
+    Write("Saisir la dimension sur lesquelle vous voulez travailler");
+    Read(n);
+
+
+    //l'utilisateur saisit les composantes pour chaque vecteur
+
+    Write("Veillez renseigner les composantes du vecteur V1");
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        Write("Saisir la composante ",i+1);
+        Read(V1[i]);
+    END_FOR
+
+    Write("Veillez renseigner les composantes du vecteur V2");
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        Write("Saisir la composante ",i+1);
+        Read(V2[i]);
+    END_FOR
+    
+    //Appel de la procedure qui calcule le produit scalaire de deux vecteurs
+
+    dot_product(V1,V2,n);
+    
+END
